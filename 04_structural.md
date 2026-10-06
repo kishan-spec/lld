@@ -12,7 +12,7 @@ Think of structural pattern as a way of designing smaller objects so that they s
 1. [Adapter Pattern](#adapter-pattern)
 2. [Decorator Pattern](#decorator-pattern)
 3. [Facade Pattern](#facade-pattern)
-4. [Composite Pattern](#composite-pattern)
+4. [Composite Pattern](#Composite-pattern)
 5. [Proxy Pattern](#proxy-pattern)
 6. [Bridge Pattern](#bridge-pattern)
 
@@ -1074,6 +1074,43 @@ think about where subsystem boundaries should be.
 ---
 
 ## Composite Pattern
+
+LookUP Dynamic Method dispatch
+```java
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+    
+    void fetch() {
+        System.out.println("Dog is fetching!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Upcasting: Superclass reference points to a Subclass object
+        Animal myAnimal = new Dog(); 
+        
+        // Resolves at runtime to Dog's sound() method
+        myAnimal.sound(); // Output: Dog barks
+        
+        // Compile-time error! The Animal reference doesn't know about fetch()
+        // myAnimal.fetch(); 
+    }
+}
+
+```
+
+**here what methods to use depends on the reference aka Animal
+and what version of that method to use depends on the type of object aka Dog**
 
 The **Composite Pattern** is a structural design pattern
 that allows you to compose objects into tree structures to
